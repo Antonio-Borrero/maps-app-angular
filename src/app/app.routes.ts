@@ -12,12 +12,12 @@ export const routes: Routes = [
     {
         path: 'markers',
         component: MarkersPage,
-        title: 'Markers'
+        title: 'Marcadores'
     },
     {
         path: 'houses',
         component: HousesPage,
-        title: 'Available properties'
+        title: 'Propiedades disponibles'
     },
     {
         path: '**',
