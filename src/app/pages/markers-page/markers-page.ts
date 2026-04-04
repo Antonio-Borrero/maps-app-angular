@@ -1,48 +1,67 @@
 import { AfterViewInit, Component, ElementRef, signal, viewChild } from '@angular/core';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { MapMouseEvent } from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
+import { v4 as UUIDv4 } from 'uuid';
 
 mapboxgl.accessToken = environment.mapboxKey;
 
+interface Marker {
+    id: string;
+    mapboxMarker: mapboxgl.Marker;
+}
 
 @Component({
-  selector: 'app-markers-page',
-  imports: [],
-  templateUrl: './markers-page.html',
+    selector: 'app-markers-page',
+    imports: [],
+    templateUrl: './markers-page.html',
 })
-export class MarkersPage implements AfterViewInit{
-  divElement = viewChild<ElementRef>('map');
-  
-  map = signal<mapboxgl.Map | null>(null);
-  
-  async ngAfterViewInit() {
-    if (!this.divElement()?.nativeElement) return;
+export class MarkersPage implements AfterViewInit {
+    divElement = viewChild<ElementRef>('map');
+    map = signal<mapboxgl.Map | null>(null);
+    markers = signal<Marker[]>([]);
 
-    await new Promise((resolve) => setTimeout(resolve, 80));
+    async ngAfterViewInit() {
+        if (!this.divElement()?.nativeElement) return;
 
-    const element = this.divElement()!.nativeElement;
+        await new Promise((resolve) => setTimeout(resolve, 80));
 
-    const mapbox = new mapboxgl.Map({
-      container: element, 
-      center: [-3.804147436303832, 43.46099559896331],
-      zoom: 14,
-    });
+        const element = this.divElement()!.nativeElement;
 
-    const marker = new mapboxgl.Marker({
-      draggable: false,
-      color: '#000',
-    })
-      .setLngLat([-3.804147436303832, 43.46099559896331])
-      .addTo(mapbox)
+        const mapbox = new mapboxgl.Map({
+            container: element,
+            center: [-3.804147436303832, 43.46099559896331],
+            zoom: 14,
+        });
 
-    marker.on('dragend', (event) => {
-      console.log(event)
-    })
+        this.mapListeners(mapbox);
+    }
 
-    this.mapListeners(mapbox);
-  };
+    mapListeners(map: mapboxgl.Map) {
+        map.on('click', (event) => {
+            this.mapClick(event);
+        });
 
-  mapListeners(map: mapboxgl.Map) {
+        this.map.set(map);
+    }
 
-  }
+    mapClick(event: mapboxgl.MapMouseEvent) {
+        if (!this.map()) return;
+
+        const map = this.map()!;
+        const color = '#xxxxxx'.replace(/x/g, (y) => ((Math.random() * 16) | 0).toString(16));
+        const coords = event.lngLat;
+
+        const marker = new mapboxgl.Marker({
+            color: color,
+        })
+            .setLngLat(coords)
+            .addTo(map);
+
+        const newMarker: Marker = {
+            id: UUIDv4(),
+            mapboxMarker: marker,
+        };
+
+        this.markers.update((prevMarkers) => [newMarker, ...prevMarkers]);
+    }
 }
