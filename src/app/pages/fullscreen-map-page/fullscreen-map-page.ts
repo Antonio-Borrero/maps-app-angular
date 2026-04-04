@@ -35,9 +35,9 @@ export class FullscreenMapPage implements AfterViewInit {
   map = signal<mapboxgl.Map | null>(null);
   zoom = signal(14);
   coordinates = signal({
-    lng: -71.06776, 
-    lat: 42.35816
-  })
+    lng: -71.06776,
+    lat: 42.35816,
+  });
 
   zoomEffect = effect(() => {
     if (!this.map()) return;
@@ -51,7 +51,7 @@ export class FullscreenMapPage implements AfterViewInit {
     await new Promise((resolve) => setTimeout(resolve, 80));
 
     const element = this.divElement()!.nativeElement;
-    const {lat, lng} = this.coordinates();
+    const { lat, lng } = this.coordinates();
 
     const mapbox = new mapboxgl.Map({
       container: element, // container ID
@@ -59,14 +59,13 @@ export class FullscreenMapPage implements AfterViewInit {
       zoom: this.zoom(), // starting zoom
     });
 
-    this.mapListeners(mapbox)
+    this.mapListeners(mapbox);
   }
-  
-  mapListeners( map: mapboxgl.Map ){
-    
+
+  mapListeners(map: mapboxgl.Map) {
     map.on('zoomend', (event) => {
       const newZoom = event.target.getZoom();
-      this.zoom.set(newZoom)
+      this.zoom.set(newZoom);
     });
 
     map.on('moveend', () => {
@@ -74,9 +73,9 @@ export class FullscreenMapPage implements AfterViewInit {
       this.coordinates.set(center);
     });
 
-    map.addControl(new mapboxgl.FullscreenControl);
-    map.addControl(new mapboxgl.NavigationControl);
-    map.addControl(new mapboxgl.ScaleControl);
+    map.addControl(new mapboxgl.FullscreenControl());
+    map.addControl(new mapboxgl.NavigationControl());
+    map.addControl(new mapboxgl.ScaleControl());
 
     this.map.set(map);
   }
