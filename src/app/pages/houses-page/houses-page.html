@@ -5,8 +5,8 @@
 
 <section class="container mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2">
     @for (property of houses(); track property.id; let i = $index) {
-        <div class="card bg-base-100 w-96 shadow-sm">
-            <app-mini-map />
+        <div class="card bg-base-100 shadow-sm rounded-t-md overflow-hidden border">
+            <app-mini-map [lngLat]="property.lngLat" [zoom]="14" />
             <div class="card-body">
                 <h2 class="card-title">
                     {{ property.name }}
