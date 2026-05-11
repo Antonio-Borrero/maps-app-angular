@@ -12,7 +12,7 @@ Español | [English](README.md)
 
 <br>
 
-Este es un **proyecto de aprendizaje y práctica** construido con **Angular 21** centrado en la integración de datos geoespaciales interactivos utilizando **Mapbox GL**. La aplicación demuestra la manipulación de mapas, como la gestión dinámica de marcadores, estados de UI sincronizados y el renderizado de múltiples instancias de mapas en una sola vista.
+Este es un **proyecto de aprendizaje y práctica** construido con Angular como parte del **curso de Angular de DevTalles (Fernando Herrera)** centrado en la integración de datos geoespaciales interactivos utilizando **Mapbox GL**. La aplicación demuestra la manipulación de mapas, como la gestión dinámica de marcadores, estados de UI sincronizados y el renderizado de múltiples instancias de mapas en una sola vista.
 
 <br>
 
