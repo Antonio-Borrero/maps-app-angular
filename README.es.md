@@ -1,4 +1,4 @@
-English | [Español](README.es.md)
+Español | [English](README.md)
 
 # MapsApp
 
