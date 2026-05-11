@@ -92,6 +92,8 @@ Este es un **proyecto de aprendizaje y práctica** construido con **Angular 21**
 - Personalización dinámica de marcadores y popups de Mapbox.
 - Implementación de layouts responsivos para aplicaciones basadas en mapas.
 
+<br>
+
 ## Build
 
 To build the production version:
