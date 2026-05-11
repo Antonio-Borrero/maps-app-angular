@@ -92,6 +92,8 @@ This is a **learning and practice project** built with **Angular 21** focused on
 - Customizing Mapbox Markers and popups dynamically.
 - Implementing responsive layouts for map-based applications
 
+<br> 
+
 ## Build
 
 To build the production version:
