@@ -1,4 +1,4 @@
-Español | [English](README.md)
+English | [Español](README.es.md)
 
 # MapsApp
 
@@ -6,92 +6,95 @@ Español | [English](README.md)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![daisyUI](https://img.shields.io/badge/daisyUI-FDE047?logo=daisyui&logoColor=black)](https://daisyui.com/)
+[![Mapbox](https://img.shields.io/badge/Mapbox-000000?logo=mapbox&logoColor=white)](https://www.mapbox.com/)
 
-Este es un **proyecto de aprendizaje y práctica** desarrollado con Angular para aprender a trabajar con mapas interactivos.
-La aplicación demuestra funcionalidades como la creación, visualización y gestión de marcadores, la navegación a ubicaciones seleccionadas y el renderizado de instancias de mapas dentro de componentes dinámicos como listas y tarjetas, incluyendo diseño responsivo y gestión de estado usando signals de Angular.
-El objetivo de este proyecto es practicar conceptos de Angular como:
+![Maps App Preview](assets/preview.png)
 
-- Integración y trabajo con mapas interactivos usando Mapbox GL
-- Creación y gestión dinámica de marcadores en el mapa
-- Manejo de interacciones del usuario como navegación, selección y eliminación de marcadores
-- Implementación de layouts responsive para aplicaciones basadas en mapas
+<br>
+
+Este es un **proyecto de aprendizaje y práctica** construido con **Angular 21** centrado en la integración de datos geoespaciales interactivos utilizando **Mapbox GL**. La aplicación demuestra la manipulación de mapas, como la gestión dinámica de marcadores, estados de UI sincronizados y el renderizado de múltiples instancias de mapas en una sola vista.
+
+<br>
+
+## Aspectos Técnicos Destacados
+
+- **Integración con Mapbox GL:** Gestión del ciclo de vida completo de mapas interactivos dentro de componentes de Angular.
+- **Estado Reactivo con Signals:** Uso de **Angular Signals** para una sincronización de UI de alto rendimiento entre el mapa y las listas laterales.
+- **Gestión Dinámica de Marcadores:** Lógica para crear, almacenar (LocalStorage) y navegar a través de marcadores interactivos.
+- **Reutilización de Componentes:** Implementación de un componente "Mini-Map" diseñado para renderizarse dentro de tarjetas y listas sin degradación del rendimiento.
+- **Layouts Responsivos:** Diseños optimizados para aplicaciones basadas en mapas.
+
+<br>
 
 ## Tecnologías
 
-- Angular 21
-- TypeScript
-- Tailwind 4.2
-- Daisyui 5.5
+- **Angular 21** (Signals, Standalone Components)
+- **Mapbox GL JS**
+- **Tailwind CSS 4.2** & **DaisyUI 5.5**
+- **TypeScript**
+
+<br>
 
 ## Instalación
 
 1. Clonar el repositorio:
-   ```bash
-   git clone https://github.com/Antonio-Borrero/maps-app-angular.git
-   ```
 
-2. Entrar en la carpeta del proyecto:
-   ```bash
-   cd maps-app-angular
-   ```
-   
-3. Instalar dependencias:
-   ```bash
-   npm install
-   ```
-   
-4. Generar los archivos de entorno:
-   ```bash
-   npm run set-envs
-   ```
-   
-5. Levantar el servidor de desarrollo:
-   ```bash
-   ng serve
-   ```
+    ```bash
+    git clone https://github.com/Antonio-Borrero/maps-app-angular.git
+    ```
 
-6. Abrir en el navegador:
-   - Ir a `http://localhost:4200/`.
-   - La aplicación se recargará automáticamente al detectar cambios
+2. Instalar dependencias:
+    ```bash
+    npm install
+    ```
+3. Generar archivos de entorno:
+    ```bash
+    npm run set-envs
+    ```
 
-## Funcionalidades
+    - Actualizar el token de Mapbox por el propio en `src/environments/environment.ts`.
+4. Ejecutar el servidor de desarrollo:
 
-- Mapas interactivos con Mapbox GL
-- Creación y gestión dinámica de marcadores
-- Navegación y eliminación de marcadores
-- Sincronización entre el mapa y la lista de marcadores
-- Componentes reutilizables y diseño basado en tarjetas
-- Diseño responsive para diferentes tamaños de pantalla
+    ```bash
+    ng serve
+    ```
+
+5. abrir en el navegador:
+    - Ir a `http://localhost:4200/`.
+    - La aplicación se recargará automáticamente al modificar cualquier archivo.
+
+<br>
+
+## Estructura del Proyecto
+
+```bash
+   - src/
+   ├── app
+   │   ├── maps
+   │   │   └── components
+   │   │       └── mini-map        # Componente de mini mapa reutilizable para renderizar mapas en otras vistas (ej. cards)
+   │   ├── pages
+   │   │   ├── fullscreen-map-page # Vista de mapa interactivo a pantalla completa
+   │   │   ├── houses-page         # Página que muestra elementos en layout de tarjetas, cada una con su propio mapa
+   │   │   └── markers-page        # Página de gestión de marcadores (lista, navegación, borrado)
+   │   └── shared
+   │       └── components
+   │           └── navbar          # Componente de barra de navegación compartido
+   └── environments                # Configuración de entorno (API keys, ajustes para dev/prod)
+```
+
+<br>
 
 ## Aprendizaje
 
-- Trabajo con mapas interactivos usando datos de una API externa
-- Creación, visualización y gestión dinámica de marcadores
-- Manejo de interacciones del usuario en mapas (navegación, selección y eliminación)
-- Sincronización de elementos de la UI (listas, tarjetas) con el estado del mapa
-- Implementación de layouts responsivos para aplicaciones basadas en mapas
+- Trabajar con mapas interactivos utilizando datos de una API externa.
+- Sincronización de coordenadas geográficas con elementos de la UI en tiempo real.
+- Personalización dinámica de marcadores y popups de Mapbox.
+- Implementación de layouts responsivos para aplicaciones basadas en mapas.
 
-## Estructura del proyecto
+## Build
 
-```bash
-- src/
- ├── app
-│   ├── maps
-│   │   └── components
-│   │       └── mini-map        # Componente reutilizable de mini mapa para mostrar mapas en otras vistas (ej. tarjetas)
-│   ├── pages
-│   │   ├── fullscreen-map-page # Vista de mapa en pantalla completa
-│   │   ├── houses-page         # Página con tarjetas, cada una con su propio mapa
-│   │   └── markers-page        # Página de gestión de marcadores (lista, navegación, eliminación)
-│   └── shared
-│       └── components
-│           └── navbar          # Componente de barra de navegación reutilizable
-└── environments                # Configuración de entornos (API keys, dev/prod)
-```
-
-## Producción
-
-Para generar la versión de producción:
+To build the production version:
 
 ```bash
 ng build
